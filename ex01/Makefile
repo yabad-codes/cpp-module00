@@ -2,14 +2,16 @@ NAME = phonebook
 
 SRC = Contact.cpp PhoneBook.cpp main.cpp
 
-OBJ = Contact.o PhoneBook.o main.o
+OBJ = ${SRC:.cpp=.o}
 
 COMP = c++ -Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)
 
-$(NAME): $(SRC)
-	$(COMP) -c $(SRC)
+%.o:%.cpp
+	$(COMP) -c $< -o $@
+
+$(NAME): $(OBJ)
 	$(COMP) $(OBJ) -o $(NAME)
 
 clean:
