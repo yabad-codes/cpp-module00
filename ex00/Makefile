@@ -10,6 +10,9 @@ NAME = megaphone
 
 all:	$(NAME)
 
+%.o:%.cpp
+	$(CC) $(CFLAGS) -c $< -o $@
+
 $(NAME):	$(OBJS)
 		$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
@@ -19,6 +22,6 @@ clean:
 fclean:	clean
 	rm -f $(NAME)
 
-re:	fclean $(NAME)
+re:	fclean all
 
 .PHONY:	all clean fclean re
