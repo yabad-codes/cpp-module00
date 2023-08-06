@@ -1,6 +1,6 @@
 SRC = Account.cpp tests.cpp
 
-OBJS = Account.o tests.o
+OBJS = $(SRC:.cpp=.o)
 
 CC = c++
 
@@ -10,8 +10,10 @@ NAME = account
 
 all: $(NAME)
 
+%.o:%.cpp
+	$(CC) $(CFLAGS) -c $< -o $@
+
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(SRC) -c
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 clean:
